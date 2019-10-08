@@ -5,8 +5,17 @@ EAST = "e"
 WEST = "w"
 X = 1
 Y = 1
-
+coin = 0
 # Functions
+
+def lever_pull(coin):
+    get_inp = input("Pull a lever (y/n): ").lower()
+    if get_inp == "y":
+        coin += 1
+        print("You received 1 coin, your total is now {}.".format(coin))
+        return coin
+    else:
+        return coin
 
 def move_options(x,y):
     ''' Function which tells which direction you can move
@@ -88,8 +97,8 @@ def move_player(x, y, move):
 # Ask for input and save it
 while True:  # The main loop
     n,e,s,w,count = move_options(X,Y)  # Assign booleans and count from possible direction options
-    print_options(n,e,s,w,count)       # Print the options
     while True:
+        print_options(n,e,s,w,count)       # Print the options
         # Get the input, if the input matches the boolean of the direction then break out, else ask for the input again
         input_str = input("Direction: ").lower()
         if((input_str == NORTH and n) or (input_str == EAST and e) or (input_str == SOUTH and s) or (input_str == WEST and w)):
@@ -98,6 +107,8 @@ while True:  # The main loop
             print("Not a valid direction!")
             continue
     X,Y = move_player(X,Y,input_str)  # New position
+    if Y == 2 or (X == 2 and Y == 3):
+        coin = lever_pull(coin) 
     if X == 3 and Y == 1:  # If the player is on tile (3,1), then you win
-        print("Victory!")
+        print("Victory! Total coins {}.".format(coin))
         break
