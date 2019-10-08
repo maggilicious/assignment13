@@ -77,8 +77,7 @@ def print_options(n,e,s,w, count):
         print("(W)est.")
         return None
 
-#TODO:
-# Make a function that moves the player
+
 def move_player(x, y, move):
     ''' Function that changes the player position
     input: x and y position and user input for direction
