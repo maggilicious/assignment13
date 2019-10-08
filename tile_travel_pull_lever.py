@@ -88,9 +88,10 @@ def move_player(x, y, move):
 # Ask for input and save it
 while True:  # The main loop
     n,e,s,w,count = move_options(X,Y)  # Assign booleans and count from possible direction options
-    print_options(n,e,s,w,count)       # Print the options
+    
     while True:
         # Get the input, if the input matches the boolean of the direction then break out, else ask for the input again
+        print_options(n,e,s,w,count)       # Print the options
         input_str = input("Direction: ").lower()
         if((input_str == NORTH and n) or (input_str == EAST and e) or (input_str == SOUTH and s) or (input_str == WEST and w)):
             break
